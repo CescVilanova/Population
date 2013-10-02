@@ -2,7 +2,7 @@ require_relative 'lib/setup'
 require_relative 'lib/analytics'
 
 class Population
-    attr_accessor : analytics
+    attr_accessor :analytics
 
     def initialize
       areas = Setup.new().areas

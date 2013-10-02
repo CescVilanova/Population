@@ -12,7 +12,7 @@ class Analytics
     @options << { menu_id: 1, menu_title: 'Areas count', method: :how_many }
     @options << { menu_id: 2, menu_title: 'Smalles Population (non 0)', method: :smallest_pop }
     @options << { menu_id: 3, menu_title: 'Largest Population', method: :largest_pop }
-    @options << { menu_id: 4, menu_title: 'How many zips in California?', method: :california_sips }
+    @options << { menu_id: 4, menu_title: 'How many zips in California?', method: :california_zips }
     @options << { menu_id: 5, menu_title: 'Information for a given zip', method: :zip_info }
     @options << { menu_id: 6, menu_title: 'Exit', method: :exit }
   end
@@ -21,7 +21,7 @@ class Analytics
     opt = @options.select {|o| o[:menu_id] == choice }.first
     if opt.nil?
       p "Invalid choice"
-    elsif opt[method] != :exit
+    elsif opt[:method] != :exit
       self.send opt[:method]
       :done
     else
@@ -35,7 +35,7 @@ class Analytics
   end
 
   def smallest_pop
-    sorte = @areas.sort do |x, y|
+    sorted = @areas.sort do |x, y|
       x.estimated_population <=> y.estimated_population
     end
     smallest = sorted.drop_while { |i| i.estimated_population == 0 }.first
@@ -44,7 +44,7 @@ class Analytics
   end
 
   def largest_pop
-    sorted = @areas,sort do |x, y|
+    sorted = @areas.sort do |x, y|
       x.estimated_population <=> y.estimated_population
     end
     largest = sorted.reverse.drop_while { |i| i.estimated_population == 0 }.first

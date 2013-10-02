@@ -1,6 +1,6 @@
 class Area
 
-  attr_accessor :zip_code, :estimated_population, :city, :state
+  attr_accessor :zipcode, :estimated_population, :city, :state
 
   def initialize(hash)
     @zipcode = hash[:zipcode].to_i || 0

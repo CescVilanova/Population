@@ -42,7 +42,7 @@ class CSVReader
     while (!f.eof? && next_line = f.readline)
       values = next_line.split(',')
       hash = create_hash(values)
-      yeld(hash)
+      yield(hash)
     end
     
   end
